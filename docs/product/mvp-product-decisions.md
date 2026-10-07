@@ -1,6 +1,6 @@
 # Квартално каре — MVP Product Decisions
 
-**Status:** Proposed decisions for final product-owner review  
+**Status:** Accepted for MVP implementation  
 **Lesson:** 2 — AI as Product Planner  
 **Date:** 6 October 2026  
 **Related document:** `docs/architecture/tech-and-deployment-stack.md`

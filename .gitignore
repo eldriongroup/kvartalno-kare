@@ -1,0 +1,32 @@
+
+# Node
+/node_modules/
+/dist/
+/.nx/
+/.angular/
+
+# Python
+/apps/api/.venv/
+/apps/api/*.egg-info/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+__screenshots__/
+
+# Test output
+test-results/
+playwright-report/
+blob-report/
+coverage/

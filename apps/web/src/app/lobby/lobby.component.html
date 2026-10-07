@@ -1,0 +1,26 @@
+<main class="page-shell">
+  <section class="hero" aria-labelledby="app-title">
+    <p class="eyebrow">Private table · virtual chips</p>
+    <h1 id="app-title">Kvartalno Kare</h1>
+    <p class="intro">A familiar table for the neighbourhood crew, now with a clean digital lobby.</p>
+
+    <div class="status-grid" aria-label="Service status">
+      <article class="status-card">
+        <span class="status-dot" [attr.data-state]="health.state()"></span>
+        <div>
+          <span class="label">Backend</span>
+          <strong data-testid="health-state">{{ health.state() }}</strong>
+        </div>
+      </article>
+      <article class="status-card">
+        <span class="status-dot" [attr.data-state]="websocket.state()"></span>
+        <div>
+          <span class="label">WebSocket</span>
+          <strong data-testid="ws-state">{{ websocket.state() }}</strong>
+        </div>
+      </article>
+    </div>
+
+    <a class="primary-action" routerLink="/table">Enter table shell <span aria-hidden="true">→</span></a>
+  </section>
+</main>

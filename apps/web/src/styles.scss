@@ -1,0 +1,7 @@
+@import 'tailwindcss' source('.');
+
+:root { color-scheme: dark; --bg: #090d0c; --surface: #131a18; --text: #f5f1e8; --muted: #9eaaa4; --gold: #d8b767; --line: rgba(216,183,103,.2); font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body { margin: 0; min-width: 20rem; min-height: 100dvh; color: var(--text); background: radial-gradient(circle at 50% 0%, #18352b 0, var(--bg) 42rem); }
+a { transition: color .2s ease, background-color .2s ease, transform .2s ease; }

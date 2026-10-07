@@ -1,0 +1,16 @@
+:host { display: block; }
+.page-shell { min-height: 100dvh; display: grid; place-items: center; padding: 2rem; }
+.hero { width: min(48rem, 100%); padding: clamp(2rem, 6vw, 5rem); border: 1px solid var(--line); border-radius: 2rem; background: linear-gradient(145deg, rgba(26, 38, 34, .96), rgba(12, 16, 16, .98)); box-shadow: 0 2rem 6rem rgba(0,0,0,.38); }
+.eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .18em; font-size: .75rem; font-weight: 700; }
+h1 { margin: .5rem 0 1rem; font-family: Georgia, serif; font-size: clamp(3rem, 10vw, 6.5rem); line-height: .9; font-weight: 500; }
+.intro { max-width: 35rem; color: var(--muted); font-size: 1.1rem; line-height: 1.7; }
+.status-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 2.5rem 0; }
+.status-card { display: flex; align-items: center; gap: .85rem; padding: 1rem; background: rgba(255,255,255,.035); border: 1px solid var(--line); border-radius: 1rem; }
+.status-dot { width: .7rem; height: .7rem; border-radius: 50%; background: #718079; box-shadow: 0 0 0 .3rem rgba(113,128,121,.12); }
+.status-dot[data-state='healthy'], .status-dot[data-state='connected'] { background: #58d68d; box-shadow: 0 0 0 .3rem rgba(88,214,141,.12); }
+.status-dot[data-state='unavailable'], .status-dot[data-state='error'] { background: #ef767a; }
+.label { display: block; color: var(--muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; }
+strong { display: block; margin-top: .15rem; text-transform: capitalize; }
+.primary-action { display: inline-flex; gap: 1rem; align-items: center; padding: .95rem 1.25rem; border-radius: 999px; color: #17130a; background: var(--gold); font-weight: 800; text-decoration: none; }
+.primary-action:hover { background: #f1d58e; transform: translateY(-1px); }
+@media (max-width: 36rem) { .status-grid { grid-template-columns: 1fr; } .hero { border-radius: 1.25rem; } }
