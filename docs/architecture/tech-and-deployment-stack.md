@@ -100,11 +100,13 @@ Backend rules:
 
 For the first release:
 
-- one FastAPI process owns the active table state;
-- PostgreSQL stores durable data and recovery information;
+- exactly one FastAPI process and one Uvicorn worker host a per-table actor that owns live command sequencing and in-process gameplay state;
+- PostgreSQL owns durable command identity, committed revisions, recovery information and wallet accounting;
 - the client automatically reconnects with bounded exponential backoff;
 - a reconnect requests a fresh authoritative snapshot;
 - WebSocket messages use typed, versioned event envelopes.
+
+The complete ownership, transaction, ordering, deadline and recovery rules are recorded in [ADR-002: Authoritative poker-table state and serialized commands](adr-002-authoritative-poker-table-state.md).
 
 Redis is intentionally excluded from the first release. It becomes necessary when we run multiple backend instances, need cross-instance pub/sub, or measurements show that a single process is insufficient.
 
