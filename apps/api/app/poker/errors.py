@@ -31,3 +31,23 @@ class InvalidDeckError(PokerDomainError):
 
 class InvalidSeatingError(PokerDomainError):
     """Raised for invalid seats, identities, or table stacks."""
+
+
+class InvalidCardCollectionError(PokerDomainError):
+    """Raised when cards supplied for hand evaluation are structurally invalid."""
+
+
+class DuplicateCardError(PokerDomainError):
+    """Raised when the same card occurs more than once in an evaluation."""
+
+
+class InvalidShowdownError(PokerDomainError):
+    """Raised when a showdown has an invalid board or contender collection."""
+
+
+class InvalidContenderError(PokerDomainError):
+    """Raised when a showdown contender or their private cards are invalid."""
+
+
+class InvalidContenderIdError(PokerDomainError):
+    """Raised when a showdown contender identifier is invalid or duplicated."""
