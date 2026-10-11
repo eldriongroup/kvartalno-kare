@@ -1,7 +1,9 @@
 :host { display: block; width: clamp(8.1rem, 13vw, 10.5rem); }
 .seat-panel { position: relative; min-height: 5rem; padding: .65rem .7rem; color: #f7f2e8; border: 1px solid rgba(224,193,116,.25); border-radius: .85rem; background: rgba(15,22,21,.96); box-shadow: 0 .65rem 1.5rem rgba(0,0,0,.4); }
 .identity { display: flex; align-items: center; gap: .5rem; }
-.identity strong { display: block; overflow: hidden; text-overflow: ellipsis; }
+.identity-details { min-width: 0; overflow: hidden; }
+.player-name, .seat-number, .contribution { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.player-name { display: block; }
 .avatar { flex: 0 0 2rem; width: 2rem; height: 2rem; display: grid; place-items: center; border: 1px solid rgba(224,193,116,.35); border-radius: 50%; color: #e4c777; background: #263732; font-size: .67rem; font-weight: 800; }
 .seat-number, .connection, .contribution { display: block; color: #aab7b1; font-size: .62rem; line-height: 1.35; }
 .markers { position: absolute; top: -.55rem; right: .35rem; display: flex; gap: .2rem; align-items: center; }

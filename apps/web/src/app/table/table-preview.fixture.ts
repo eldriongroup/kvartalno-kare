@@ -2,7 +2,7 @@ import { TableViewModel } from './table-view.model';
 export const TABLE_PREVIEW: TableViewModel = {
   tableName: 'The Neighbourhood Table', handDisplayNumber: '#0042', heroPlayerId: 'player-mira',
   seats: [
-    { status: 'occupied', seatNumber: 1, playerId: 'player-boris', displayName: 'Boris', initials: 'BO', stack: 1840, currentContribution: 20, dealer: false, smallBlind: true, bigBlind: false, isCurrentTurn: false, connection: 'connected', holeCards: { visibility: 'hidden', count: 2 } },
+    { status: 'occupied', seatNumber: 1, playerId: 'player-boris', displayName: 'Aleksandar Petrov', initials: 'AP', stack: 125000, currentContribution: 20, dealer: false, smallBlind: true, bigBlind: false, isCurrentTurn: false, connection: 'connected', holeCards: { visibility: 'hidden', count: 2 } },
     { status: 'available', seatNumber: 2 },
     { status: 'occupied', seatNumber: 3, playerId: 'player-kaloyan', displayName: 'Kaloyan', initials: 'KA', stack: 2460, currentContribution: 40, dealer: false, smallBlind: false, bigBlind: true, isCurrentTurn: false, connection: 'connected', holeCards: { visibility: 'hidden', count: 2 } },
     { status: 'occupied', seatNumber: 4, playerId: 'player-iva', displayName: 'Iva', initials: 'IV', stack: 965, currentContribution: 0, dealer: false, smallBlind: false, bigBlind: false, isCurrentTurn: false, connection: 'inactive', holeCards: { visibility: 'hidden', count: 0 } },

@@ -3,7 +3,7 @@
     @if (tableSeat.status === 'available') {
       <span class="seat-number">Seat {{ tableSeat.seatNumber }}</span><strong>Available</strong>
     } @else {
-      <div class="identity"><span class="avatar" aria-hidden="true">{{ tableSeat.initials }}</span><div><strong>{{ tableSeat.displayName }}</strong><span class="seat-number">Seat {{ tableSeat.seatNumber }} · {{ tableSeat.stack }} chips</span></div></div>
+      <div class="identity"><span class="avatar" aria-hidden="true">{{ tableSeat.initials }}</span><div class="identity-details"><strong class="player-name" [attr.title]="tableSeat.displayName">{{ tableSeat.displayName }}</strong><span class="seat-number">Seat {{ tableSeat.seatNumber }} · {{ tableSeat.stack }} chips</span></div></div>
       <div class="markers" aria-label="Table markers">
         @if (tableSeat.dealer) { <span title="Dealer">D</span> }
         @if (tableSeat.smallBlind) { <span title="Small blind">SB</span> }
