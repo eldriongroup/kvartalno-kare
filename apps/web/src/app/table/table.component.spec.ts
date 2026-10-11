@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { TABLE_PREVIEW } from './table-preview.fixture';
 import { TableComponent } from './table.component';
-import { TableViewModel, projectSeatsForHero } from './table-view.model';
+import { TableViewModel, VisibleCard, projectSeatsForHero } from './table-view.model';
 
 describe('TableComponent', () => {
   let fixture: ComponentFixture<TableComponent>;
@@ -69,13 +69,51 @@ describe('TableComponent', () => {
     expect(fixture.nativeElement.textContent).toContain('180 chips');
   });
 
+  it.each([0, 3, 4, 5])('renders exactly the supplied %i community cards without transforming the board', (length) => {
+    const fiveCardBoard: readonly VisibleCard[] = [
+      { rank: '2', suit: 'clubs' }, { rank: '3', suit: 'diamonds' }, { rank: '4', suit: 'hearts' },
+      { rank: '5', suit: 'spades' }, { rank: '6', suit: 'clubs' },
+    ];
+    const suppliedBoard = fiveCardBoard.slice(0, length);
+    const state = { ...TABLE_PREVIEW, communityCards: suppliedBoard } satisfies TableViewModel;
+    const beforeRender = JSON.stringify(state);
+
+    fixture.componentRef.setInput('state', state);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelectorAll('.community-cards [role="img"]')).toHaveLength(length);
+    expect(JSON.stringify(state)).toBe(beforeRender);
+    expect(state.communityCards).toBe(suppliedBoard);
+  });
+
   it('renders already-computed action labels only for an active hero turn', () => {
     expect(fixture.nativeElement.textContent).toContain('Your turn');
     expect([...fixture.nativeElement.querySelectorAll('button')].map((button: HTMLButtonElement) => button.textContent?.trim())).toEqual(['Fold', 'Call 20', 'Raise to 80']);
+    expect([...fixture.nativeElement.querySelectorAll('button')].every((button: HTMLButtonElement) => button.disabled)).toBe(true);
+    expect(fixture.nativeElement.textContent).toContain('Preview only — actions are unavailable.');
     fixture.componentRef.setInput('state', { ...TABLE_PREVIEW, heroTurn: { isActive: false, notification: 'Waiting', actions: [] } });
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelectorAll('button')).toHaveLength(0);
     expect(fixture.nativeElement.textContent).toContain('Waiting for another player');
+  });
+
+  it('renders a supplied Check action without substituting Call or calculating an amount', () => {
+    const state: TableViewModel = {
+      ...TABLE_PREVIEW,
+      heroTurn: {
+        isActive: true,
+        notification: 'Your turn',
+        actions: [{ type: 'fold', label: 'Fold' }, { type: 'check', label: 'Check' }, { type: 'raise', label: 'Raise to 80', amount: 80 }],
+      },
+    };
+
+    fixture.componentRef.setInput('state', state);
+    fixture.detectChanges();
+
+    const buttons = [...fixture.nativeElement.querySelectorAll('button')] as HTMLButtonElement[];
+    expect(buttons.map((button) => button.textContent?.trim())).toEqual(['Fold', 'Check', 'Raise to 80']);
+    expect(buttons.every((button) => button.disabled)).toBe(true);
+    expect(fixture.nativeElement.textContent).not.toContain('Call');
   });
 
   it('does not add a nested router outlet', () => {

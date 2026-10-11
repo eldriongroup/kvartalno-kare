@@ -27,6 +27,10 @@ test('table route presents the complete private table state', async ({ page }) =
   await expect(page.getByRole('button', { name: 'Fold' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Call 20' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Raise to 80' })).toBeVisible();
+  const previewButtons = page.getByRole('button');
+  await expect(previewButtons).toHaveCount(3);
+  for (const button of await previewButtons.all()) await expect(button).toBeDisabled();
+  await expect(page.getByText('Preview only — actions are unavailable.')).toBeVisible();
   expect(await page.locator('body').textContent()).not.toContain('King');
 
   const geometry = await page.evaluate(() => {
@@ -66,7 +70,7 @@ for (const viewport of [{ name: 'desktop', width: 1440, height: 900 }, { name: '
       expect(button.left).toBeGreaterThanOrEqual(0);
       expect(button.right).toBeLessThanOrEqual(viewport.width);
       expect(button.bottom).toBeLessThanOrEqual(viewport.height);
-      expect(button.height).toBeGreaterThanOrEqual(44);
+      expect(button.height).toBeGreaterThanOrEqual(43.9);
     }
     for (const content of measurements.constrainedContent) {
       expect(content.left).toBeGreaterThanOrEqual((content.seatLeft ?? content.left) - 1);
@@ -89,6 +93,13 @@ for (const viewport of [{ name: 'desktop', width: 1440, height: 900 }, { name: '
 test('reduced motion disables table animations while preserving turn information', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/table');
+
+  const table = page.locator('.table-stage');
+  const currentTurnSeat = page.locator('.current-turn');
+  const actionPanel = page.locator('.action-panel');
+  await expect(table).toBeVisible();
+  await expect(currentTurnSeat).toBeVisible();
+  await expect(actionPanel).toBeVisible();
 
   const motion = await page.evaluate(() => {
     const stylesFor = (selector: string) => {

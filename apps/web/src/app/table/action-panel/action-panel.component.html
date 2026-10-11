@@ -1,4 +1,5 @@
 <section class="action-panel" aria-labelledby="turn-notification">
   <strong id="turn-notification">{{ notification() }}</strong>
-  <div class="actions">@for (action of actions(); track action.type) { <button type="button" [class.primary]="action.type === 'call' || action.type === 'check'" [class.raise]="action.type === 'raise'">{{ action.label }}</button> }</div>
+  <div class="actions">@for (action of actions(); track action.type) { <button type="button" disabled aria-describedby="preview-actions-note" [class.primary]="action.type === 'call' || action.type === 'check'" [class.raise]="action.type === 'raise'">{{ action.label }}</button> }</div>
+  <small id="preview-actions-note">Preview only — actions are unavailable.</small>
 </section>
