@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ActionPanelComponent } from './action-panel/action-panel.component';
 import { PlayerSeatComponent } from './player-seat/player-seat.component';
@@ -13,6 +13,7 @@ import { projectSeatsForHero } from './table-view.model';
   styleUrl: './table.component.scss',
 })
 export class TableComponent {
-  protected table = TABLE_PREVIEW;
+  readonly state = input(TABLE_PREVIEW);
+  protected get table() { return this.state(); }
   protected get projectedSeats() { return projectSeatsForHero(this.table); }
 }

@@ -16,7 +16,7 @@ test('table route presents the complete private table state', async ({ page }) =
   await expect(page.getByTestId('hero-position').locator('[data-seat-number="8"]')).toBeVisible();
   await expect(page.getByLabel('Ace of spades')).toBeVisible();
   await expect(page.getByLabel('Queen of hearts')).toBeVisible();
-  await expect(page.getByLabel('Face-down card')).toHaveCount(6);
+  await expect(page.locator('[aria-label="Face-down card"]')).toHaveCount(6);
   await expect(page.locator('[title="Dealer"]')).toBeVisible();
   await expect(page.locator('[title="Small blind"]')).toBeVisible();
   await expect(page.locator('[title="Big blind"]')).toBeVisible();
@@ -30,7 +30,7 @@ test('table route presents the complete private table state', async ({ page }) =
 });
 
 for (const viewport of [{ name: 'desktop', width: 1440, height: 900 }, { name: 'mobile', width: 390, height: 844 }]) {
-  test(`${viewport.name} table has no horizontal overflow or clipped controls`, async ({ page }) => {
+  test(`${viewport.name} table has no horizontal overflow or clipped controls`, async ({ page }, testInfo) => {
     await page.setViewportSize(viewport);
     await page.goto('/table');
     const measurements = await page.evaluate(() => ({
@@ -45,6 +45,7 @@ for (const viewport of [{ name: 'desktop', width: 1440, height: 900 }, { name: '
       expect(button.bottom).toBeLessThanOrEqual(viewport.height);
       expect(button.height).toBeGreaterThanOrEqual(44);
     }
+    await page.screenshot({ path: testInfo.outputPath(`${viewport.name}-table.png`), fullPage: true });
   });
 }
 

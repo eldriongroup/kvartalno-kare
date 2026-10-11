@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { TABLE_PREVIEW } from './table-preview.fixture';
 import { TableComponent } from './table.component';
-import { TableViewModel, projectSeatsForHero } from './table-view.model';
+import { projectSeatsForHero } from './table-view.model';
 
 describe('TableComponent', () => {
   let fixture: ComponentFixture<TableComponent>;
@@ -49,8 +49,7 @@ describe('TableComponent', () => {
   it('renders already-computed action labels only for an active hero turn', () => {
     expect(fixture.nativeElement.textContent).toContain('Your turn');
     expect([...fixture.nativeElement.querySelectorAll('button')].map((button: HTMLButtonElement) => button.textContent?.trim())).toEqual(['Fold', 'Call 20', 'Raise to 80']);
-    const component = fixture.componentInstance as unknown as { table: TableViewModel };
-    component.table = { ...TABLE_PREVIEW, heroTurn: { isActive: false, notification: 'Waiting', actions: [] } };
+    fixture.componentRef.setInput('state', { ...TABLE_PREVIEW, heroTurn: { isActive: false, notification: 'Waiting', actions: [] } });
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelectorAll('button')).toHaveLength(0);
     expect(fixture.nativeElement.textContent).toContain('Waiting for another player');
