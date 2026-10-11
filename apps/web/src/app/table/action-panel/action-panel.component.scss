@@ -1,0 +1,13 @@
+:host { display: block; }
+.action-panel { display: flex; align-items: center; justify-content: center; gap: 1rem; padding: .65rem; border: 1px solid rgba(225,193,112,.3); border-radius: 1rem; background: rgba(12,18,17,.96); box-shadow: 0 1rem 2.5rem rgba(0,0,0,.38); animation: panel-in .3s ease-out; }
+.action-panel strong { color: #eed58f; white-space: nowrap; }
+.actions { display: flex; gap: .5rem; }
+button { min-width: 6.5rem; min-height: 2.75rem; padding: .55rem .9rem; color: #f5f1e8; border: 1px solid #53635d; border-radius: .7rem; background: #26312e; font: inherit; font-weight: 750; }
+button:disabled { cursor: not-allowed; opacity: .82; }
+button:focus-visible { outline: 3px solid #f5d983; outline-offset: 2px; }
+button.primary { color: #102018; background: #71bd91; border-color: #8ad2a8; }
+button.raise { color: #211a09; background: #e1c170; border-color: #f1d895; }
+.action-panel small { color: #aab7b1; font-size: .65rem; }
+@keyframes panel-in { from { opacity: 0; transform: translateY(.5rem); } }
+@media (max-width: 600px) { .action-panel { align-items: stretch; flex-direction: column; gap: .3rem; border-radius: .85rem .85rem 0 0; } .action-panel strong, .action-panel small { text-align: center; } .action-panel strong { font-size: .8rem; } .actions { display: grid; grid-template-columns: repeat(3, 1fr); } button { min-width: 0; min-height: 2.75rem; padding: .45rem .3rem; font-size: .76rem; } }
+@media (prefers-reduced-motion: reduce) { .action-panel, button { animation: none; transition: none; } }

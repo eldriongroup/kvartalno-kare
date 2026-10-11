@@ -1,0 +1,7 @@
+:host { display: inline-flex; }
+.card { width: clamp(2.2rem, 4vw, 3.4rem); aspect-ratio: .7; display: grid; place-content: center; border-radius: .38rem; box-shadow: 0 .35rem .8rem rgba(0,0,0,.35); }
+.card-face { position: relative; color: #17201d; background: #f7f1df; border: 1px solid #fff; }
+.card-face.red { color: #a8323e; }
+.rank { position: absolute; top: .2rem; left: .28rem; font: 800 clamp(.7rem, 1.5vw, 1rem)/1 Georgia, serif; }
+.suit { font-size: clamp(1.15rem, 2.5vw, 1.8rem); }
+.card-back { overflow: hidden; color: rgba(241,213,142,.8); border: 2px solid #e8dfc8; background: repeating-linear-gradient(45deg, #253e50 0 4px, #1a2d3d 4px 8px); font-size: 1.2rem; }

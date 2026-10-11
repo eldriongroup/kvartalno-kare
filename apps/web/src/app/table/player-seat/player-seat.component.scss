@@ -1,0 +1,22 @@
+:host { display: block; width: clamp(8.1rem, 13vw, 10.5rem); }
+.seat-panel { position: relative; min-height: 5rem; padding: .65rem .7rem; color: #f7f2e8; border: 1px solid rgba(224,193,116,.25); border-radius: .85rem; background: rgba(15,22,21,.96); box-shadow: 0 .65rem 1.5rem rgba(0,0,0,.4); }
+.identity { display: flex; align-items: center; gap: .5rem; }
+.identity-details { min-width: 0; overflow: hidden; }
+.player-name, .seat-number, .contribution { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.player-name { display: block; }
+.avatar { flex: 0 0 2rem; width: 2rem; height: 2rem; display: grid; place-items: center; border: 1px solid rgba(224,193,116,.35); border-radius: 50%; color: #e4c777; background: #263732; font-size: .67rem; font-weight: 800; }
+.seat-number, .connection, .contribution { display: block; color: #aab7b1; font-size: .62rem; line-height: 1.35; }
+.markers { position: absolute; top: -.55rem; right: .35rem; display: flex; gap: .2rem; align-items: center; }
+.markers span { min-width: 1.35rem; height: 1.35rem; display: grid; place-items: center; padding: 0 .22rem; border-radius: 50%; color: #211a09; background: #e1c170; border: 1px solid #fff0bd; font-size: .55rem; font-weight: 900; }
+.markers em { padding: .16rem .35rem; color: #d8f7e8; border-radius: 999px; background: #17664c; font-size: .55rem; font-style: normal; text-transform: uppercase; }
+.contribution { margin-top: .45rem; color: #e6c876; }
+.connection { margin-top: .3rem; text-transform: capitalize; }
+.hole-cards { position: absolute; z-index: -1; top: -2rem; left: 50%; display: flex; transform: translateX(-50%); }
+.hole-cards app-playing-card + app-playing-card { margin-left: -.45rem; transform: rotate(5deg); }
+.available { min-height: 3.5rem; display: grid; place-content: center; text-align: center; color: #c0cec7; border: 1px dashed rgba(192,206,199,.45); background: rgba(13,28,23,.62); box-shadow: none; }
+.available strong { font-size: .78rem; }
+.hero { border-color: #e1c170; }
+.current-turn { box-shadow: 0 0 0 .2rem rgba(225,193,112,.2), 0 .65rem 1.5rem rgba(0,0,0,.4); animation: turn-pulse 2s ease-in-out infinite; }
+@keyframes turn-pulse { 50% { box-shadow: 0 0 0 .4rem rgba(225,193,112,.08), 0 .65rem 1.5rem rgba(0,0,0,.4); } }
+@media (max-width: 600px) { :host { width: 6.8rem; } .seat-panel { min-height: 3.8rem; padding: .45rem; } .avatar { display: none; } .identity strong { font-size: .72rem; } .hole-cards { top: -1.35rem; } .contribution { font-size: .53rem; } }
+@media (prefers-reduced-motion: reduce) { .current-turn { animation: none; } }

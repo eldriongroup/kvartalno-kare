@@ -1,12 +1,24 @@
 <main class="table-room">
-  <nav><a routerLink="/lobby">← Back to lobby</a></nav>
-  <section class="table-shell" aria-labelledby="table-title">
-    <div class="seat seat-top">Seat 1</div><div class="seat seat-right">Seat 2</div>
+  <header class="room-header">
+    <a routerLink="/lobby" aria-label="Back to lobby">← Lobby</a>
+    <div><span>{{ table.tableName }}</span><small>Hand {{ table.handDisplayNumber }}</small></div>
+    <span class="blinds">Private table</span>
+  </header>
+  <section class="table-stage" aria-label="Texas Hold'em table">
+    <div class="table-rail" aria-hidden="true"></div>
     <div class="felt">
-      <p class="eyebrow">Table preview</p>
-      <h1 id="table-title">Gameplay is not implemented</h1>
-      <p>This is the visual shell for the future server-authoritative poker table.</p>
+      <div class="centre-content">
+        <div class="community-cards" aria-label="Community cards">@for (card of table.communityCards; track card.rank + card.suit) { <app-playing-card [card]="card" /> }</div>
+        <div class="pot-area"><div class="chips" aria-hidden="true"><span></span><span></span><span></span></div><span>Pot</span><strong>{{ table.totalPot }} chips</strong></div>
+      </div>
     </div>
-    <div class="seat seat-bottom">Your seat</div><div class="seat seat-left">Seat 4</div>
+    @for (projected of projectedSeats; track projected.seat.seatNumber) {
+      <div class="seat-position" [attr.data-position]="projected.visualPosition" [attr.data-testid]="projected.visualPosition === 'bottom-center' ? 'hero-position' : 'seat-position'">
+        <app-player-seat [seat]="projected.seat" [isHero]="projected.seat.status === 'occupied' && projected.seat.playerId === table.heroPlayerId" />
+      </div>
+    }
   </section>
+  @if (table.heroTurn.isActive) {
+    <div class="action-dock"><app-action-panel [notification]="table.heroTurn.notification" [actions]="table.heroTurn.actions" /></div>
+  } @else { <p class="waiting-state">Waiting for another player…</p> }
 </main>
