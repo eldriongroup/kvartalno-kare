@@ -1,0 +1,7 @@
+@if (hidden()) {
+  <span class="card card-back" aria-label="Face-down card"><span aria-hidden="true">◇</span></span>
+} @else if (card(); as visibleCard) {
+  <span class="card card-face" [class.red]="visibleCard.suit === 'hearts' || visibleCard.suit === 'diamonds'" [attr.aria-label]="visibleCard.rank + ' of ' + visibleCard.suit">
+    <span class="rank" aria-hidden="true">{{ shortRank(visibleCard) }}</span><span class="suit" aria-hidden="true">{{ symbol(visibleCard) }}</span>
+  </span>
+}
